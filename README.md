@@ -2,22 +2,34 @@
 https://sc2019.herokuapp.com/home
 
 JDK: 1.8
+
 framework: spring MVC
+
 DB: MariaDB(MySQL)
+
 
 
 DB Table(1개)
 
-TABLE TODO(
-	NO INT(11) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-	VSEQ INT(11) UNSIGNED NOT NULL,
-	TITLE VARCHAR(100) NOT NULL,
-	NOTE VARCHAR(3000),
-	DEADABLE TINYINT(1) UNSIGNED NOT NULL,
-	DEADLINE DATETIME,
-	PRIORITY TINYINT(1) UNSIGNED NOT NULL,
-	COMPLETE TINYINT(1) UNSIGNED NOT NULL
-);
+>TABLE TODO(
+
+>	NO INT(11) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+
+>	VSEQ INT(11) UNSIGNED NOT NULL,
+
+>	TITLE VARCHAR(100) NOT NULL,
+
+>	NOTE VARCHAR(3000),
+
+>	DEADABLE TINYINT(1) UNSIGNED NOT NULL,
+
+>	DEADLINE DATETIME,
+
+>	PRIORITY TINYINT(1) UNSIGNED NOT NULL,
+
+>	COMPLETE TINYINT(1) UNSIGNED NOT NULL
+
+>);
 
 
 * * *
@@ -34,11 +46,16 @@ https://sc2019.herokuapp.com/home
 
 
 2. 환경변수 추가
+
 ```vi /etc/profile```
-JAVA_HOME=/usr/bin/java
-CLASSPATH=.:$JAVA_HOME/lib/tools.jar
-PATH=$PATH:$JAVA_HOME/bin
-export JAVA_HOME CLASSPATH PATH
+
+>JAVA_HOME=/usr/bin/java
+
+>CLASSPATH=.:$JAVA_HOME/lib/tools.jar
+
+>PATH=$PATH:$JAVA_HOME/bin
+
+>export JAVA_HOME CLASSPATH PATH
 
 
 3. 서버 설치(tomcat8)
@@ -101,22 +118,13 @@ http://localhost:8080/SC2019/home
 
 6-1. 없으면 생성(show databases로 확인가능)
 
-```create database mysql
-use mysql```
+```create database mysql```
+```use mysql```
 
 
 7. 테이블 생성
 
-```CREATE TABLE TODO(
-	NO INT(11) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-	VSEQ INT(11) UNSIGNED NOT NULL,
-	TITLE VARCHAR(100) NOT NULL,
-	NOTE VARCHAR(3000),
-	DEADABLE TINYINT(1) UNSIGNED NOT NULL,
-	DEADLINE DATETIME,
-	PRIORITY TINYINT(1) UNSIGNED NOT NULL,
-	COMPLETE TINYINT(1) UNSIGNED NOT NULL
-);```
+```CREATE TABLE TODO(NO INT(11) UNSIGNED PRIMARY KEY AUTO_INCREMENT, VSEQ INT(11) UNSIGNED NOT NULL, TITLE VARCHAR(100) NOT NULL, NOTE VARCHAR(3000), DEADABLE TINYINT(1) UNSIGNED NOT NULL, DEADLINE DATETIME, PRIORITY TINYINT(1) UNSIGNED NOT NULL, COMPLETE TINYINT(1) UNSIGNED NOT NULL);```
 
 
 8. 계정 생성
@@ -126,16 +134,19 @@ use mysql```
 
 9. 권한 부여
 
-```grant all privileges on mysql.todo to '생성한아이디'@'%' identified by '패스워드';
-flush privileges;```
+```grant all privileges on mysql.todo to '생성한아이디'@'%' identified by '패스워드';```
+```flush privileges;```
 
 
 10. DB 접속 정보를 수정(MariaDB 기본포트 3306일 때, 사용하기로 한 database명이 mysql일 때)
 
 ```vi ./SC2019/WEB-INF/classes/properties/db.properties```
-jdbc.url=jdbc:mariadb://localhost:3306/mysql
-jdbc.username=아이디
-jdbc.password=패스워드
+
+>jdbc.url=jdbc:mariadb://localhost:3306/mysql
+
+>jdbc.username=아이디
+
+>jdbc.password=패스워드
 
 
 11. 톰캣 재시작(수정된 정보 적용)
