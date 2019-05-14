@@ -568,7 +568,7 @@
 								<table class="table">
 									<tbody>
 										<tr>
-											<td class="title ex-title">${todo.title}</td>
+											<td class="title ex-title"><c:out value="${todo.title}" escapeXml="true" /></td>
 											<td class="text-right td-order" style="width: 70px;">
 												<button type="button" class="btn btn-primary btn-xs btn-order btn-orderup">▲</button>
 												<button type="button" class="btn btn-primary btn-xs btn-order btn-orderdown">▼</button>
