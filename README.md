@@ -1,4 +1,4 @@
-# Summer Coding 2019
+ï»¿# Summer Coding 2019
 https://sc2019.herokuapp.com/home
 
 JDK: 1.8
@@ -6,7 +6,7 @@ framework: spring MVC
 DB: MariaDB(MySQL)
 
 
-DB Table(1°³)
+DB Table(1ê°œ)
 
 TABLE TODO(
 	NO INT(11) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
@@ -22,17 +22,17 @@ TABLE TODO(
 
 * * *
 
-¼³Ä¡ ¿Ü ¹Ù·ÎÃ¼ÇèÀº
+ì„¤ì¹˜ ì™¸ ë°”ë¡œì²´í—˜ì€
 https://sc2019.herokuapp.com/home
 
 
 * * *
 
-1. JDK 1.8 ¼³Ä¡
+1. JDK 1.8 ì„¤ì¹˜
 ```sudo yum install java-1.8.0-openjdk.x86_64```
 
 
-2. È¯°æº¯¼ö Ãß°¡
+2. í™˜ê²½ë³€ìˆ˜ ì¶”ê°€
 ```vi /etc/profile```
 JAVA_HOME=/usr/bin/java
 CLASSPATH=.:$JAVA_HOME/lib/tools.jar
@@ -40,60 +40,60 @@ PATH=$PATH:$JAVA_HOME/bin
 export JAVA_HOME CLASSPATH PATH
 
 
-3. ¼­¹ö ¼³Ä¡(tomcat8)
+3. ì„œë²„ ì„¤ì¹˜(tomcat8)
 ```sudo yum install tomcat8```
 
 
-4. ÅèÄ¹ ½ÃÀÛ(¼³Ä¡ Á¦´ë·Î µÇ¾ú³ª È®ÀÎ)
+4. í†°ìº£ ì‹œì‘(ì„¤ì¹˜ ì œëŒ€ë¡œ ë˜ì—ˆë‚˜ í™•ì¸)
 ```sudo service tomcat8 start```
 
 
-5. ÅèÄ¹ÀÇ webapps Æú´õ·Î warÆÄÀÏ ¿Å±â±â
+5. í†°ìº£ì˜ webapps í´ë”ë¡œ waríŒŒì¼ ì˜®ê¸°ê¸°
 ```mv ./SC2019.war /usr/share/tomcat8/webapps/SC2019.war```
 
 
-6. ÅèÄ¹ Àç½ÃÀÛ(warÆÄÀÏ ÀÚµ¿ÇØÁ¦)
+6. í†°ìº£ ì¬ì‹œì‘(waríŒŒì¼ ìë™í•´ì œ)
 ```sudo service tomcat8 restart```
 
 
-7. Á¢¼Ó(ÅèÄ¹ ±âº» Á¢¼ÓÆ÷Æ®°¡ 8080ÀÏ °æ¿ì)
+7. ì ‘ì†(í†°ìº£ ê¸°ë³¸ ì ‘ì†í¬íŠ¸ê°€ 8080ì¼ ê²½ìš°)
 http://localhost:8080/SC2019/home
 
 
 * * *
 
-+ DB±îÁö ¼³Ä¡ÇÏ°í ½Í´Ù¸é,
++ DBê¹Œì§€ ì„¤ì¹˜í•˜ê³  ì‹¶ë‹¤ë©´,
 
-1. MariaDB ¼³Ä¡ Á¤º¸ ¹Ş±â(/etc/yum/yum.repos.d/mariadb.repo)
+1. MariaDB ì„¤ì¹˜ ì •ë³´ ë°›ê¸°(/etc/yum/yum.repos.d/mariadb.repo)
 ```curl -sS https://downloads.mariadb.com/MariaDB/mariadb_repo_setup | sudo bash```
 
 
-2. MariaDB ¼³Ä¡
+2. MariaDB ì„¤ì¹˜
 ```yum install MariaDB-server```
 
 
-3. MariaDB ½ÇÇà
+3. MariaDB ì‹¤í–‰
 ```systemctl start mariadb```
 
 
-4. MariaDB root ¾ÏÈ£¼³Á¤
+4. MariaDB root ì•”í˜¸ì„¤ì •
 ```mysql_secure_installation```
 
 
-5. MariaDB root·Î ·Î±×ÀÎ
+5. MariaDB rootë¡œ ë¡œê·¸ì¸
 ```mysql -u root -p```
 
 
-6. mysql DB¸¦ »ç¿ë.
+6. mysql DBë¥¼ ì‚¬ìš©.
 ```use mysql```
 
 
-6-1. ¾øÀ¸¸é »ı¼º(show databases·Î È®ÀÎ°¡´É)
+6-1. ì—†ìœ¼ë©´ ìƒì„±(show databasesë¡œ í™•ì¸ê°€ëŠ¥)
 ```create database mysql```
 ```use mysql```
 
 
-7. Å×ÀÌºí »ı¼º
+7. í…Œì´ë¸” ìƒì„±
 ```CREATE TABLE TODO(
 	NO INT(11) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
 	VSEQ INT(11) UNSIGNED NOT NULL,
@@ -106,21 +106,21 @@ http://localhost:8080/SC2019/home
 );```
 
 
-8. °èÁ¤ »ı¼º
-```create user '¾ÆÀÌµğ'@'%' identified by 'ÆĞ½º¿öµå';```
+8. ê³„ì • ìƒì„±
+```create user 'ì•„ì´ë””'@'%' identified by 'íŒ¨ìŠ¤ì›Œë“œ';```
 
 
-9. ±ÇÇÑ ºÎ¿©
-```grant all privileges on mysql.todo to '»ı¼ºÇÑ¾ÆÀÌµğ'@'%' identified by 'ÆĞ½º¿öµå';
+9. ê¶Œí•œ ë¶€ì—¬
+```grant all privileges on mysql.todo to 'ìƒì„±í•œì•„ì´ë””'@'%' identified by 'íŒ¨ìŠ¤ì›Œë“œ';
 flush privileges;```
 
 
-10. DB Á¢¼Ó Á¤º¸¸¦ ¼öÁ¤(MariaDB ±âº»Æ÷Æ® 3306ÀÏ ¶§, »ç¿ëÇÏ±â·Î ÇÑ database¸íÀÌ mysqlÀÏ ¶§)
+10. DB ì ‘ì† ì •ë³´ë¥¼ ìˆ˜ì •(MariaDB ê¸°ë³¸í¬íŠ¸ 3306ì¼ ë•Œ, ì‚¬ìš©í•˜ê¸°ë¡œ í•œ databaseëª…ì´ mysqlì¼ ë•Œ)
 ```vi ./SC2019/WEB-INF/classes/properties/db.properties```
 jdbc.url=jdbc:mariadb://localhost:3306/mysql
-jdbc.username=¾ÆÀÌµğ
-jdbc.password=ÆĞ½º¿öµå
+jdbc.username=ì•„ì´ë””
+jdbc.password=íŒ¨ìŠ¤ì›Œë“œ
 
 
-11. ÅèÄ¹ Àç½ÃÀÛ(¼öÁ¤µÈ Á¤º¸ Àû¿ë)
+11. í†°ìº£ ì¬ì‹œì‘(ìˆ˜ì •ëœ ì •ë³´ ì ìš©)
 ```sudo service tomcat8 restart```
