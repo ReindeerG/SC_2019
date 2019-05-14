@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="db_todo">
+	<insert id="insert" parameterType="todoDto">
+		<choose>
+			<when test="deadable==1">
+				INSERT INTO TODO VALUES(
+								TODO_SEQ.NEXTVAL,
+								0,
+								#{title},
+								#{note},
+								1,
+								TO_DATE(#{strdeadline},'YYYY-MM-DD HH24:MI:SS'),
+								#{priority},
+								0
+								)
+			</when>
+			<otherwise>
+				INSERT INTO TODO VALUES(
+								TODO_SEQ.NEXTVAL,
+								0,
+								#{title},
+								#{note},
+								0,
+								NULL,
+								#{priority},
+								0
+								)
+			</otherwise>
+		</choose>
+	</insert>
+	<select id="nextval" resultType="int">
+		SELECT TODO_SEQ.NEXTVAL FROM DUAL
+	</select>
+	<select id="getalllist" resultType="todoDto">
+		SELECT * FROM TODO ORDER BY VSEQ ASC
+	</select>
+	<select id="getdeadlist" resultType="todoDto">
+		SELECT * FROM TODO WHERE DEADABLE=1 AND SYSDATE > DEADLINE AND COMPLETE=0 ORDER BY VSEQ ASC
+	</select>
+	<update id="vseq_1up">
+		UPDATE TODO SET VSEQ = VSEQ + 1
+	</update>
+	<update id="update" parameterType="todoDto">
+		<choose>
+			<when test="deadable==1">
+				UPDATE TODO SET
+								TITLE=#{title},
+								NOTE=#{note},
+								DEADABLE=1,
+								DEADLINE=TO_DATE(#{strdeadline},'YYYY-MM-DD HH24:MI:SS'),
+								PRIORITY=#{priority},
+								COMPLETE=#{complete}
+							WHERE NO=#{no}
+			</when>
+			<otherwise>
+				UPDATE TODO SET
+								TITLE=#{title},
+								NOTE=#{note},
+								DEADABLE=0,
+								DEADLINE=NULL,
+								PRIORITY=#{priority},
+								COMPLETE=#{complete}
+							WHERE NO=#{no}
+			</otherwise>
+		</choose>
+	</update>
+	<update id="order" parameterType="todoDto">
+		UPDATE TODO SET VSEQ=#{vseq} WHERE NO=#{no}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE TODO WHERE NO=#{no}
+	</delete>
+	<select id="getone" parameterType="int" resultType="todoDto">
+		SELECT * FROM ADMIN WHERE NO=#{no}
+	</select>
+</mapper>

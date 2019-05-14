@@ -1,0 +1,58 @@
+﻿body {
+	background-color: #444444;
+}
+.table > thead th {
+	text-align: center;
+	background-color: #000030;
+}
+form {
+	margin: 0px;
+}
+textarea {
+	resize:none;
+	margin-bottom:10px;
+	background-color: #FFFFFF !important;
+}
+.table {
+	margin: 0px;
+}
+td {
+	vertical-align: middle !important;
+	border-right: 1px dotted #000000;
+	border-bottom: 1px dotted #000000;
+}
+.panel {
+	margin: 0px;
+}
+.panel-heading {
+	padding: 0px;
+	border: 0px;
+}
+.maindiv {
+	min-width: 735px;
+}
+.title {
+	border-right: 0px;
+}
+.alert-h {
+	margin-top: 0px;
+	margin-bottom: 20px;
+}
+.td-order {
+	padding: 0px !important;
+}
+.danger {
+	color: #000000 !important;
+	font-weight: bold;
+}
+.prior1 {
+	color: #FFFFFF !important;
+	font-weight: bold;
+}
+.prior2 {
+	color: #FFFF00 !important;
+	font-weight: bold;
+}
+.empty-row{
+	height: 20px;
+}
