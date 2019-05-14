@@ -2,24 +2,22 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="db_oracle_todo">
+<mapper namespace="db_maria_todo">
 	<insert id="insert" parameterType="todoDto">
 		<choose>
 			<when test="deadable==1">
-				INSERT INTO TODO VALUES(
-								TODO_SEQ.NEXTVAL,
+				INSERT INTO TODO(vseq, title, note, deadable, deadline, priority, complete) VALUES(
 								0,
 								#{title},
 								#{note},
 								1,
-								TO_DATE(#{strdeadline},'YYYY-MM-DD HH24:MI:SS'),
+								#{strdeadline},
 								#{priority},
 								0
 								)
 			</when>
 			<otherwise>
-				INSERT INTO TODO VALUES(
-								TODO_SEQ.NEXTVAL,
+				INSERT INTO TODO(vseq, title, note, deadable, deadline, priority, complete) VALUES(
 								0,
 								#{title},
 								#{note},
@@ -31,14 +29,11 @@
 			</otherwise>
 		</choose>
 	</insert>
-	<select id="nextval" resultType="int">
-		SELECT TODO_SEQ.NEXTVAL FROM DUAL
-	</select>
 	<select id="getalllist" resultType="todoDto">
 		SELECT * FROM TODO ORDER BY VSEQ ASC
 	</select>
 	<select id="getdeadlist" resultType="todoDto">
-		SELECT * FROM TODO WHERE DEADABLE=1 AND SYSDATE > DEADLINE AND COMPLETE=0 ORDER BY VSEQ ASC
+		SELECT * FROM TODO WHERE DEADABLE=1 AND NOW() > DEADLINE AND COMPLETE=0 ORDER BY VSEQ ASC
 	</select>
 	<update id="vseq_1up">
 		UPDATE TODO SET VSEQ = VSEQ + 1
@@ -50,7 +45,7 @@
 								TITLE=#{title},
 								NOTE=#{note},
 								DEADABLE=1,
-								DEADLINE=TO_DATE(#{strdeadline},'YYYY-MM-DD HH24:MI:SS'),
+								DEADLINE=#{strdeadline},
 								PRIORITY=#{priority},
 								COMPLETE=#{complete}
 							WHERE NO=#{no}
@@ -71,6 +66,6 @@
 		UPDATE TODO SET VSEQ=#{vseq} WHERE NO=#{no}
 	</update>
 	<delete id="delete" parameterType="int">
-		DELETE TODO WHERE NO=#{no}
+		DELETE FROM TODO WHERE NO=#{no}
 	</delete>
 </mapper>

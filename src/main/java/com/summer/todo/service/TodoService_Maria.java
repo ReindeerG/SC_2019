@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import com.summer.todo.entity.TodoDto;
 import com.summer.todo.repository.TodoDao;
 
-//@Service("todoService")
-public class TodoService_Oracle implements TodoService {
+@Service("todoService")
+public class TodoService_Maria implements TodoService {
 	@Autowired
 	private TodoDao todoDao;
 	
@@ -36,7 +36,7 @@ public class TodoService_Oracle implements TodoService {
 		try {
 			TodoDto todoDto = TodoDto.builder().title(title).note(note).priority(priority).build();
 			if(deadable) {
-				// 마감기한을 설정했을 경우, "YYYY-MM-DD 24HH:MI:SS"로 OracleDB의 Date형식에 맞게 문자열을 설정.
+				// 마감기한을 설정했을 경우, "YYYY-MM-DD 24HH:MI:SS"로 MariaDB의 Date형식에 맞게 문자열을 설정.
 				todoDto.setDeadable(1);
 				todoDto.setStrdeadline(deaddate+" "+deadtime+":00");
 			} else {
@@ -53,7 +53,7 @@ public class TodoService_Oracle implements TodoService {
 		try {
 			TodoDto todoDto = TodoDto.builder().no(no).title(title).note(note).priority(priority).complete(complete).build();
 			if(deadable) {
-				// 마감기한을 설정했을 경우, "YYYY-MM-DD 24HH:MI:SS"로 OracleDB의 Date형식에 맞게 문자열을 설정.
+				// 마감기한을 설정했을 경우, "YYYY-MM-DD 24HH:MI:SS"로 MariaDB의 Date형식에 맞게 문자열을 설정.
 				todoDto.setDeadable(1);
 				todoDto.setStrdeadline(deaddate+" "+deadtime+":00");
 			} else {
